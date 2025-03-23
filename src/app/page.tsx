@@ -10,21 +10,13 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState<string>('');
 
   useEffect(() => {
-    console.log("fetching advocates...");
     fetch("/api/advocates").then((response) => {
       response.json().then((jsonResponse) => {
         setAdvocates(jsonResponse.data);
         setFilteredAdvocates(jsonResponse.data);
       });
-    });
+    }).catch((e) => alert('Oh No Server Error!'));
   }, []);
-
-  const filterSpecialties = (specialties: string[], searchTerm: string): boolean => {
-    const lowerCaseSpecialties = specialties.map((specialty) => specialty.toLowerCase());
-    const joinedSpecialties = lowerCaseSpecialties.join(' ');
-
-    return joinedSpecialties.includes(searchTerm.toLowerCase());
-  };
 
   const onChange = (e: { target: { value: string; }; }) => {
     const currentSearchTerm = e.target.value;
@@ -33,21 +25,11 @@ export default function Home() {
   }
 
   const onSearchClick = () => {
-    const recentlyFilteredAdvocates = advocates.filter((advocate) => {
-      if (searchTermType === 'specialty') {
-        return filterSpecialties(advocate.specialties, searchTerm);
-      }
-
-      if (searchTermType === 'yearsOfExperience') {
-        return advocate.yearsOfExperience.toString().includes(searchTerm);
-      }
-
-      if (typeof advocate[searchTermType] === 'string') {
-        return advocate[searchTermType].toLowerCase().includes(searchTerm.toLowerCase());
-      }      
-    });
-
-    setFilteredAdvocates(recentlyFilteredAdvocates);
+    fetch(`/api/advocates?searchTermType=${searchTermType}&searchTerm=${searchTerm}`).then((response) => {
+      response.json().then((jsonResponse) => {
+        setFilteredAdvocates(jsonResponse.data);
+      });
+    }).catch((e) => alert('Oh No Server Error!'));
   };
 
   const onResetClick = () => {
@@ -71,9 +53,9 @@ export default function Home() {
           <option value="lastName">Last Name</option>
           <option value="city">City</option>
           <option value="degree">Degree</option>
-          <option value="degree">Degree</option>
-          <option value="specialty">Specialty</option>
+          {/* <option value="specialty">Specialty</option>
           <option value="yearsOfExperience">Years of Experience</option>
+          <option value="phoneNumber">Phone Number</option> */}
         </select>
         <input style={{ border: "1px solid black" }} onChange={onChange} value={searchTerm} />
         <button onClick={onSearchClick}>Search</button>
