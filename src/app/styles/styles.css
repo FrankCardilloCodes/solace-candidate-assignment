@@ -1,0 +1,36 @@
+.mainBody {
+  margin: 24px;
+}
+.companyHeader {
+  text-align: center;
+  font-size: 2rem;
+}
+.search {
+  text-align: center;
+}
+.searchHeader {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.searchFilterSelector {
+  margin-right: .5rem;
+  padding: .1rem;
+  border: solid black 1px;
+}
+.searchButton {
+  margin-left: .25rem;
+  margin-right: .25rem;
+  padding: .1rem;
+  border: solid black 1px;
+}
+.specialtyContainer {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;  
+}
+.resultRow {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}

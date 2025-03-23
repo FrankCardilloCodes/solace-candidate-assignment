@@ -3,6 +3,8 @@
 
 - I wasn't quite sure if I was supposed to leave my PRs open. Obviously in a real, collaborative environment I wouldn't just merge things without approval from the team. But I wanted to be able to iterate off of my previous work in subsequent PRs in a linear fashion, so I just merged stuff when I felt ready to move onto the next task. Hopefully looking at the merged PRs tab in github still tells a coherent enough story for you to assess me
 
+- I've had some trouble integrating with drizzle. I've never used it before today, so I guess it's to be expected. Still, I would want to iron this out if I had more time
+
 
 ## Potential Future Improvements
 
@@ -18,4 +20,4 @@
 
 - When searching by phone number and by years of experience I defaulted to equality. But it would be preferable to check if the search query is contained in the values for those fields. Perhaps this calls for an update to the schema such that those columns are strings. Perhaps a more clever query could be crafted to type cast on the fly
 
-- I've had some trouble integrating with drizzle. I've never used it before today, so I guess it's to be expected. Still, I would want to iron this out if I had more time
+- I cleaned up the UI enough that it is no longer confusing to look at, but it's still very plain. Would certainly want to make it more engaging before putting it in front of real users
