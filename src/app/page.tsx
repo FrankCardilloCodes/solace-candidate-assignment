@@ -49,9 +49,9 @@ export default function Home() {
           <option value="lastName">Last Name</option>
           <option value="city">City</option>
           <option value="degree">Degree</option>
-          {/* <option value="specialty">Specialty</option>
+          <option value="specialty">Specialty</option>
           <option value="yearsOfExperience">Years of Experience</option>
-          <option value="phoneNumber">Phone Number</option> */}
+          <option value="phoneNumber">Phone Number</option>
         </select>
         <input style={{ border: "1px solid black" }} onChange={onChange} value={searchTerm} />
         <button className="searchButton" onClick={onSearchClick}>Search</button>
