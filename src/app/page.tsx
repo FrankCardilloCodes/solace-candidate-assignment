@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Advocate } from '../types';
+import './styles/styles.css';
 
 export default function Home() {
   const [advocates, setAdvocates] = useState<Advocate[]>([]);
@@ -21,7 +22,6 @@ export default function Home() {
   const onChange = (e: { target: { value: string; }; }) => {
     const currentSearchTerm = e.target.value;
     setSearchTerm(currentSearchTerm);
-    document.getElementById("search-term")!.innerHTML = currentSearchTerm;
   }
 
   const onSearchClick = () => {
@@ -34,21 +34,17 @@ export default function Home() {
 
   const onResetClick = () => {
     setSearchTerm('');
-    document.getElementById("search-term")!.innerHTML = '';
     setFilteredAdvocates(advocates);
   };
 
   return (
-    <main style={{ margin: "24px" }}>
-      <h1>Solace Advocates</h1>
+    <main className="mainBody">
+      <h1 className="companyHeader">Solace Advocates</h1>
       <br />
       <br />
-      <div>
-        <p>Search</p>
-        <p>
-          Searching for: <span id="search-term"></span>
-        </p>
-        <select defaultValue="firstName" onChange={(e) => setSearchTermType(e.target.value)} name="advocate-attributes" id="advocate-attributes">
+      <div className="search">
+        <h2 className="searchHeader">Search</h2>
+        <select className="searchFilterSelector" defaultValue="firstName" onChange={(e) => setSearchTermType(e.target.value)} name="advocate-attributes" id="advocate-attributes">
           <option value="firstName">First Name</option>
           <option value="lastName">Last Name</option>
           <option value="city">City</option>
@@ -58,9 +54,8 @@ export default function Home() {
           <option value="phoneNumber">Phone Number</option> */}
         </select>
         <input style={{ border: "1px solid black" }} onChange={onChange} value={searchTerm} />
-        <button onClick={onSearchClick}>Search</button>
-        <span> | </span>
-        <button onClick={onResetClick}>Reset</button>
+        <button className="searchButton" onClick={onSearchClick}>Search</button>
+        <button className="searchButton" onClick={onResetClick}>Reset</button>
       </div>
       <br />
       <br />
@@ -80,17 +75,15 @@ export default function Home() {
           {filteredAdvocates.map((advocate) => {
             return (
               <tr>
-                <td>{advocate.firstName}</td>
-                <td>{advocate.lastName}</td>
-                <td>{advocate.city}</td>
-                <td>{advocate.degree}</td>
-                <td>
-                  {advocate.specialties.map((s) => (
-                    <div>{s}</div>
-                  ))}
+                <td className="resultRow">{advocate.firstName}</td>
+                <td className="resultRow">{advocate.lastName}</td>
+                <td className="resultRow">{advocate.city}</td>
+                <td className="resultRow">{advocate.degree}</td>
+                <td className="specialtyContainer resultRow">
+                  {advocate.specialties.join(', ')}
                 </td>
-                <td>{advocate.yearsOfExperience}</td>
-                <td>{advocate.phoneNumber}</td>
+                <td className="resultRow">{advocate.yearsOfExperience}</td>
+                <td className="resultRow">{advocate.phoneNumber}</td>
               </tr>
             );
           })}
